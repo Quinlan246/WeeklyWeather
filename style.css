@@ -22,7 +22,13 @@ header {
 }
 
 .form-input {
-    width: 310px;
     margin-bottom: 10px;
     font-size: 25px;
+    width: 100%;
+}
+
+.search-history {
+    margin-top: 10px;
+    width: 250px;
+    margin-left: 20px;
 }

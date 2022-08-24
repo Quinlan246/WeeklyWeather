@@ -14,16 +14,33 @@
 
     <main class="flex-row justify-space-between">
         
-        <div class="col-12 col-md-4">
+        <div class="col-4">
             
             <div class="card"> 
                 <h3 class="card-header">Search For a City:</h3> 
                 <form id="user-form" class="card-body">
                     <input name="city" id="city" type="text" autofocus="true" class="form-input" placeholder="Search"/>
-                    <button type="submit" class="btn btn-primary">Search</button>
+                    <button type="submit" class="searchBtn btn btn-primary">Search</button>
                 </form>
             </div>
 
+        </div>
+
+        <div class="search-history col-4">
+            <button class="btn btn-primary" id="clear-history">Clear History</button>
+            <ul class="city-list"></ul>
+        </div>
+
+        <div class="col-8">
+            <div class="row hide" id="currentCity">
+                <h3 id="currentCityInfo"><img id="weatherImage"><img></h3>
+                <p id="currentTemp"></p>
+                <p id="currentHumid"></p>
+                <p id="currentWind"></p>
+                <p id="currentUvi"></p>
+            </div>
+            <div class="row hide" id="forecast">
+            </div>
         </div>
 
     </main>    
