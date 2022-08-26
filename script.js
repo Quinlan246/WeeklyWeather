@@ -12,12 +12,12 @@ $(document).ready(function () {
         $.ajax({
             url: queryURL,
             method: "GET"
-        }).then(function (results) {
+        }) .then(function (results) {
             weatherForecast(results);
             addToSearchHist(results.name);
         });
         $("#city").val("")
-    });
+    }); 
 
 
     function weatherForecast(results) {
@@ -49,7 +49,7 @@ $(document).ready(function () {
             var currentCityUvi = results.current.uvi;
             uviIndexSeverity(currentCityUvi);
             fiveDayForecast(results);
-        });
+        }); 
     };
 
     function fiveDayForecast(results) {
@@ -61,7 +61,7 @@ $(document).ready(function () {
             var forecastSquare = $("<div>");
             forecastSquare.attr("class", "col forecast-square");
             var forecastDateP = $("<p>");
-            var forecastDate = results.daily[i].sunrise;
+            var forecastDate = list.dt_txt[i].sunrise;
             var inMilliseconds = forecastDate * 1000;
             var inDateFormat = new Date(inMilliseconds);
             var currentIntMonth = inDateFormat.getMonth() + 1;
@@ -105,7 +105,30 @@ $(document).ready(function () {
         };
     };
 
-    
+    function addToSearchHist(newCityName) {
+        initialzeLocalStorage()
+        var searchHistory = JSON.parse(localStorage.getItem('prevSearch'));
+        searchHistory.unshift(newCityName);
+        localStorage.setItem('prevSearch', JSON.stringify(searchHistory));
+        displaySearchHistory()
+    }
+
+    function displaySearchHistory() {
+        $("#searchHistory").text("");
+        var searchHistory = JSON.parse(localStorage.getItem("prevCityWeatherSrch"));
+        for (i = 0; i < searchHistory.length; i++) {
+            $("#searchHistory").append("<br>");
+            var searchBtn = $("<button>");
+            searchBtn.addClass("btn btn-info prvCity");
+            searchBtn.attr("type", "button");
+            searchBtn.attr("id", searchHistory[i]);
+            searchBtn.text(searchHistory[i]);
+            $("#searchHistory").append(citySrchBtn);
+            if ([i] > 5) {
+                return;
+            };
+        };
+    };
 
     function initialzeLocalStorage () {
         if (localStorage.getItem('prevSearch') === null) {
